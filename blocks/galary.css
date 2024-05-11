@@ -1,0 +1,17 @@
+.galary {
+  margin-top: 51px;
+  padding: 0;
+  min-height: calc(100vh - 330px);
+  max-width: auto;
+}
+
+.galary__cards {
+  list-style-type: none;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: repeat(auto-fit, 361px);
+  grid-gap: 20px 17px;
+  margin: 0;
+  padding: 0;
+}

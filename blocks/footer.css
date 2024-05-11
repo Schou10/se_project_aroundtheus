@@ -1,0 +1,10 @@
+.footer {
+  margin-top: 48px;
+  margin-bottom: 60px;
+}
+
+.footer__paragraph {
+  margin: 0;
+  font-weight: 400;
+  color: #545454;
+}
