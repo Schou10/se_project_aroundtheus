@@ -1,5 +1,5 @@
 .footer {
-  margin-top: 48px;
+  margin-top: 67px;
   margin-bottom: 60px;
 }
 
@@ -7,11 +7,15 @@
   margin: 0;
   font-weight: 400;
   font-size: 1.125em;
+  line-height: 1.2;
   color: #545454;
 }
 
 @media screen and( max-width: 320px) {
   .footer {
     margin-top: 48px;
+  }
+  .footer__paragraph {
+    font-size: 0.875em;
   }
 }
