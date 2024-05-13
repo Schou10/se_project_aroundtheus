@@ -2,12 +2,12 @@
   background-color: #fff;
   border-radius: 10px;
   width: 282px;
-  height: 361px;
 }
 
 .card__image {
   width: auto-fit;
   height: 282px;
+  border-radius: 10px 10px 0 0;
 }
 
 .card__description {
