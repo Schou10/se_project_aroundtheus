@@ -40,4 +40,4 @@ This is a brief video that show cases my journey through out this project and he
 
 **GITHub**
 
-You can find all the source code for this project on my github. You can get to the GITHub by clicking the link [here](https://github.com/Schou10/se_project_aroundtheus).
+You can find all the source code for this project on my github. You can get to the GITHub by clicking the link [here](https://schou10.github.io/se_project_aroundtheus/).
