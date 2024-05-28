@@ -5,6 +5,8 @@
 - Intro
 - Figma
 - Images
+- Video
+- GitHub
 
 **Intro**
 
