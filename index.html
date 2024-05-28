@@ -33,7 +33,7 @@
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
               class="profile__edit-button button"
-              id="edit-button"
+              id="profile-edit-button"
               type="button"
               aria-label="edit button"
             ></button>
@@ -146,9 +146,9 @@
         <p class="footer__paragraph">&copy; 2024 Around The U.S.</p>
       </footer>
     </div>
-    <div class="modal">
+    <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close button"></button>
+        <button class="modal__close button" id="modal-close-button"></button>
         <p class="modal__heading">Edit profile</p>
         <form class="modal__form">
           <input
