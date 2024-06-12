@@ -33,13 +33,13 @@ const profileName = document.querySelector("#name");
 const profileDescription = document.querySelector('#profile-description');
 const profileEditModalTitle = document.querySelector('#modal-title');
 const profileEditModalDescription = document.querySelector('#modal-description');
-const profileEditForm = profileEditModal.querySelector(".modal__form");
+const profileForm = document.forms["#profile-form"];
 const cardListEl = document.querySelector('.galary__cards');
 const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
 
 /*Functions*/
 function closeModal(){
-  profileEditModal.classList.remove("modal_openned");
+  profileEditModal.classList.remove("modal_opened");
 }
 
 function openModal(){
