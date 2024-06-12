@@ -57,24 +57,51 @@
         <p class="footer__paragraph">&copy; 2024 Around The U.S.</p>
       </footer>
     </div>
+    <!--Edit Modal-->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close button" id="modal-close-button"></button>
         <p class="modal__heading">Edit profile</p>
-        <form class="modal__form" id="profile-form">
+        <form class="modal__form" id="profile-edit-form">
           <input
             type="text"
-            class="modal__input"
-            name="title"
+            class="modal__input modal__input_type_name"
+            name="name"
             placeholder="Name"
-            id="modal-title"
+            id="modal-name"
           />
           <input
             type="text"
-            class="modal__input"
+            class="modal__input modal__input_type_description"
             name="description"
             placeholder="Description"
             id="modal-description"
+          />
+          <button class="modal__button button" id="modal-save-button">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <!--Add Card Modal-->
+    <div class="modal" id="profile-add-modal">
+      <div class="modal__container">
+        <button class="modal__close button" id="modal-close-button"></button>
+        <p class="modal__heading">New Place</p>
+        <form class="modal__form" id="profile-add-form">
+          <input
+            type="text"
+            class="modal__input modal__input_type_title"
+            name="title"
+            placeholder="Title"
+            id="modal-add-title"
+          />
+          <input
+            type="text"
+            class="modal__input modal__input_type_url"
+            name="url"
+            placeholder="Image URL"
+            id="modal-url"
           />
           <button class="modal__button button" id="modal-save-button">
             Save
