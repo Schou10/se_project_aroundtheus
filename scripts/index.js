@@ -47,8 +47,7 @@ const addCardURL = document.querySelector("#modal-url")
 
 
 //Forms
-const profileEditForm = document.querySelector["#profile-edit-form"];
-const profileAddForm = document.querySelector["#profile-add-form"];
+const profileFormElement = document.querySelector[".modal__form"];
 
 //Cards
 const cardListEl = document.querySelector('.galary__cards');
@@ -98,6 +97,7 @@ profileEditModalClose.addEventListener('click', closeModal(profileEditModal));
 
 
 profileEditForm.addEventListener('submit', handleProfileSubmit);
+
 
 //add button Listener
 addNewCardButton.addEventListener('click', openModal(profileAddModal));
