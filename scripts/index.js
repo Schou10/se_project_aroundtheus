@@ -47,7 +47,7 @@ const addCardURL = document.querySelector("#modal-url")
 
 
 //Forms
-const profileFormElement = document.querySelector[".modal__form"];
+const profileFormElement = document.querySelector(".modal__form");
 
 //Cards
 const cardListEl = document.querySelector('.galary__cards');
@@ -60,7 +60,7 @@ function closeModal(modal){
 }
 
 function openModal(modal){
-    modal.classList.add("modal_openned");
+    modal.classList.add("modal_opened");
 }
 
 function getCardElement(cardData){
