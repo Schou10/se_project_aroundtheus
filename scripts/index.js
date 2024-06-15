@@ -47,8 +47,8 @@ const addCardURL = document.querySelector("#modal-url")
 
 
 //Forms
-const profileEditForm = document.forms["#profile-edit-form"];
-const profileAddForm = document.forms["#profile-add-form"];
+const profileEditForm = document.querySelector["#profile-edit-form"];
+const profileAddForm = document.querySelector["#profile-add-form"];
 
 //Cards
 const cardListEl = document.querySelector('.galary__cards');
