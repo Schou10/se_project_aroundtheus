@@ -96,7 +96,7 @@ profileEditButton.addEventListener('click', () => {
 profileEditModalClose.addEventListener('click', closeModal(profileEditModal));
 
 
-profileFormElement.addEventListener('submit', handleProfileSubmit);
+//profileFormElement.addEventListener('submit', handleProfileSubmit);
 
 
 //add button Listener
