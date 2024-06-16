@@ -23,6 +23,10 @@
   padding: 36px;
   border-radius: 10px;
 }
+.modal__preview {
+  background: none;
+  padding: 0 0 10px;
+}
 
 .modal__form {
   display: flex;
@@ -80,6 +84,18 @@
 }
 .modal__close:hover {
   opacity: 0.6;
+}
+
+.modal__image {
+  max-width: 816px;
+  max-height: 540px;
+}
+
+.modal__card-title {
+  color: #fff;
+  font-size: 0.75em;
+  line-height: 0.9;
+  font-weight: 400;
 }
 
 @media screen and (max-width: 630px) {
