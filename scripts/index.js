@@ -59,14 +59,15 @@ const cardTemplate = document.querySelector('#card-template').content.firstEleme
 
 
 /*Functions*/
-//Close Modal
-function closeModal(modal){
-  modal.classList.remove("modal_opened");
-}
 //Open Modal
-function openModal(modal){
-    modal.classList.add("modal_opened");
+function openModal(modal) {
+    modal.classList.add('modal_opened');
 }
+//Close
+function closeModal(modal) {
+  modal.classList.remove('modal_opened');
+}
+
 //Gets Cards
 function getCardElement(cardData){
   //Elements

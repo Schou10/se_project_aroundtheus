@@ -1,6 +1,7 @@
 .modal {
   color: #000;
-  display: none;
+  display: flex;
+  visibility: hidden;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -11,10 +12,14 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.5s linear, visibility 0.5s linear;
 }
 
 .modal_opened {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s linear;
 }
 
 .modal__container {
@@ -25,7 +30,9 @@
 }
 .modal__preview {
   background: none;
-  padding: 0 0 10px;
+  padding: 0 36px 10px;
+  max-width: 816px;
+  max-height: 540px;
 }
 
 .modal__form {
@@ -79,6 +86,11 @@
   transition: opacity 0.25s;
 }
 
+.modal__close-preview {
+  bottom: 100%;
+  left: calc(100% - 36px);
+}
+
 .modal__button:hover {
   opacity: 0.8;
 }
@@ -87,7 +99,7 @@
 }
 
 .modal__image {
-  max-width: 816px;
+  width: 100%;
   max-height: 540px;
 }
 
@@ -104,6 +116,12 @@
     height: 26px;
     left: calc(100% - 34px);
     bottom: calc(100% + 22px);
+  }
+  .modal__close-preview {
+    width: 30px;
+    width: 30px;
+    left: calc(100% - 22px);
+    bottom: calc(100% - 22px);
   }
   .modal__container {
     padding: 25px 22px;
