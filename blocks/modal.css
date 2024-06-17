@@ -31,8 +31,8 @@
 .modal__preview {
   background: none;
   padding: 0 36px 10px;
-  max-width: 816px;
-  max-height: 540px;
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .modal__form {
@@ -133,7 +133,7 @@
   }
   .modal__button {
     margin-top: 45px;
-    min-width: 238px;
-    min-height: 46px;
+    min-width: 75vw;
+    min-height: 75vh;
   }
 }
