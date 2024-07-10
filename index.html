@@ -89,7 +89,7 @@
           />
           <span class="popup__error" id="modal-description-error"></span>
           <button
-            class="modal__button button"
+            class="modal__button button popup__button"
             id="modal-edit-save-button"
             type="submit"
           >
@@ -114,7 +114,10 @@
             placeholder="Title"
             id="modal-add-title"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="popup__error" id="modal-add-title-error"></span>
           <input
             type="url"
             class="modal__input modal__input_type_url popup__input"
@@ -122,11 +125,15 @@
             placeholder="Image URL"
             id="modal-url"
             required
+            minlength="2"
+            maxlength="200"
           />
+          <span class="popup__error" id="modal-url-error"></span>
           <button
-            class="modal__button button"
+            class="modal__button button popup__button popup__button_disabled"
             id="modal-add-create-button"
             type="submit"
+            disabled
           >
             Create
           </button>

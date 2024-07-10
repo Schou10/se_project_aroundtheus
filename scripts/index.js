@@ -29,12 +29,11 @@ const initialCards = [
 //Buttons
 const profileEditButton = document.querySelector('#profile-edit-button');
 const addNewCardButton = document.querySelector("#profile-add-button");
-const profileEditModalClose = document.querySelector('#modal-edit-close-button');
-const profileAddModalClose = document.querySelector('#modal-add-close-button');
-const imageModalClose = document.querySelector("#modal-image-close-button");
+const closeButtons = document.querySelectorAll('.modal__close');
 
 
 //Modals
+const modals = [...document.querySelectorAll(".modal")];
 const profileEditModal = document.querySelector('#profile-edit-modal');
 const addCardModal = document.querySelector('#add-card-modal');
 const previewImageModal = document.querySelector("#image-modal");
@@ -131,15 +130,12 @@ function openEditProfileModal() {
 /* Event Listeners*/
 // Edit button
 profileEditButton.addEventListener('click', openEditProfileModal);
-profileEditModalClose.addEventListener('click', () => {closeModal(profileEditModal)});
+
 
 // Add New Card button
 addNewCardButton.addEventListener('click', () => {
   openModal(addCardModal);
 });
-profileAddModalClose.addEventListener('click', () => {closeModal(addCardModal)});
-
-imageModalClose.addEventListener('click', () => {closeModal(previewImageModal)});
 
 //Form Submit
 profileEditFormElement.addEventListener('submit', handleProfileSubmit);
@@ -149,3 +145,32 @@ profileAddFormElement.addEventListener('submit', handleAddCardSubmit);
 initialCards.forEach((cardData) =>{
   cardListEl.prepend(getCardElement(cardData));
 })
+
+//Modals
+modals.forEach((modal) => {
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal(modal);
+    }
+  });
+  modal.addEventListener("keypress", ()=>{});
+});
+
+//Closs Button 
+closeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal');
+    closeModal(modal);
+  });
+});
+
+//Esc Key
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' || event.key === 'Esc') {
+    modals.forEach((modal) => {
+      if (modal.classList.contains('modal_opened')) {
+        closeModal(modal);
+      }
+    });
+  }
+});
