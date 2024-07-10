@@ -65,23 +65,29 @@
           id="modal-edit-close-button"
         ></button>
         <h2 class="modal__heading">Edit profile</h2>
-        <form class="modal__form" id="profile-edit-form">
+        <form class="modal__form popup__form" id="profile-edit-form">
           <input
             type="text"
-            class="modal__input modal__input_type_name"
+            class="modal__input modal__input_type_name popup__input"
             name="name"
             placeholder="Name"
             id="modal-name"
+            minlength="2"
+            maxlength="40"
             required
           />
+          <span class="popup__error" id="modal-name-error"></span>
           <input
             type="text"
-            class="modal__input modal__input_type_description"
+            class="modal__input modal__input_type_description popup__input"
             name="description"
             placeholder="Description"
             id="modal-description"
+            minlength="2"
+            maxlength="200"
             required
           />
+          <span class="popup__error" id="modal-description-error"></span>
           <button
             class="modal__button button"
             id="modal-edit-save-button"
@@ -100,10 +106,10 @@
           id="modal-add-close-button"
         ></button>
         <h2 class="modal__heading">New Place</h2>
-        <form class="modal__form" id="profile-add-form">
+        <form class="modal__form popup__form" id="profile-add-form">
           <input
             type="text"
-            class="modal__input modal__input_type_title"
+            class="modal__input modal__input_type_title popup__input"
             name="title"
             placeholder="Title"
             id="modal-add-title"
@@ -111,7 +117,7 @@
           />
           <input
             type="url"
-            class="modal__input modal__input_type_url"
+            class="modal__input modal__input_type_url popup__input"
             name="url"
             placeholder="Image URL"
             id="modal-url"
@@ -154,5 +160,6 @@
       </li>
     </template>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>
