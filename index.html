@@ -76,7 +76,7 @@
             maxlength="40"
             required
           />
-          <span class="popup__error" id="modal-name-error"></span>
+          <span class="modal__error" id="modal-name-error"></span>
           <input
             type="text"
             class="modal__input modal__input_type_description popup__input"
@@ -87,9 +87,9 @@
             maxlength="200"
             required
           />
-          <span class="popup__error" id="modal-description-error"></span>
+          <span class="modal__error" id="modal-description-error"></span>
           <button
-            class="modal__button button popup__button"
+            class="modal__button button"
             id="modal-edit-save-button"
             type="submit"
           >
@@ -106,7 +106,7 @@
           id="modal-add-close-button"
         ></button>
         <h2 class="modal__heading">New Place</h2>
-        <form class="modal__form popup__form" id="profile-add-form">
+        <form class="modal__form" id="profile-add-form">
           <input
             type="text"
             class="modal__input modal__input_type_title popup__input"
@@ -117,10 +117,10 @@
             minlength="2"
             maxlength="40"
           />
-          <span class="popup__error" id="modal-add-title-error"></span>
+          <span class="modal__error" id="modal-add-title-error"></span>
           <input
             type="url"
-            class="modal__input modal__input_type_url popup__input"
+            class="modal__input modal__input_type_url"
             name="url"
             placeholder="Image URL"
             id="modal-url"
@@ -128,9 +128,9 @@
             minlength="2"
             maxlength="200"
           />
-          <span class="popup__error" id="modal-url-error"></span>
+          <span class="modal__error" id="modal-url-error"></span>
           <button
-            class="modal__button button popup__button popup__button_disabled"
+            class="modal__button button modal__button_disabled"
             id="modal-add-create-button"
             type="submit"
             disabled

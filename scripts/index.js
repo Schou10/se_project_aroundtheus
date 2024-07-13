@@ -55,16 +55,24 @@ const profileAddFormElement = document.querySelector("#profile-add-form");
 //Cards
 const cardListEl = document.querySelector('.galary__cards');
 const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
-
+const previewImage = document.querySelector(".modal__image");
+const previewTitle = document.querySelector(".modal__card-title");
 
 /*Functions*/
+
 //Open Modal
 function openModal(modal) {
     modal.classList.add('modal_opened');
+    modal.addEventListener("keydown", (event) =>{
+      if (event.key === 'Escape' || event.key === 'Esc') {
+          closeModal(modal);
+      }
+    });
 }
 //Close
 function closeModal(modal) {
   modal.classList.remove('modal_opened');
+  modal.removeEventListener('keydown');
 }
 
 //Gets Cards
@@ -83,8 +91,6 @@ function getCardElement(cardData){
     cardElement.remove();
   } )
   cardImageEl.addEventListener('click', () =>{
-    const previewImage = document.querySelector(".modal__image");
-    const previewTitle = document.querySelector(".modal__card-title");
     previewImage.setAttribute('src', cardData.link)
     previewImage.setAttribute('alt', cardData.name)
     previewTitle.textContent = cardData.name;
@@ -106,13 +112,17 @@ function handleProfileSubmit(e){
   closeModal(profileEditModal);
   }
 //Add Card
+function renderCard(item, method = "prepend") {
+  const cardElement = getCardElement(item);
+  cardList[ method ](cardElement);
+  }
 function handleAddCardSubmit(e){
   e.preventDefault();
   const card = {
     name: addCardTitle.value,
     link: addCardURL.value
   }
-  cardListEl.prepend(getCardElement(card));
+  renderCard(card);
   closeModal(addCardModal)
   profileAddFormElement.reset()
 }
@@ -153,7 +163,6 @@ modals.forEach((modal) => {
       closeModal(modal);
     }
   });
-  modal.addEventListener("keypress", ()=>{});
 });
 
 //Closs Button 
@@ -162,15 +171,4 @@ closeButtons.forEach((button) => {
     const modal = button.closest('.modal');
     closeModal(modal);
   });
-});
-
-//Esc Key
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' || event.key === 'Esc') {
-    modals.forEach((modal) => {
-      if (modal.classList.contains('modal_opened')) {
-        closeModal(modal);
-      }
-    });
-  }
 });
