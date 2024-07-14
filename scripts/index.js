@@ -63,16 +63,29 @@ const previewTitle = document.querySelector(".modal__card-title");
 //Open Modal
 function openModal(modal) {
     modal.classList.add('modal_opened');
-    modal.addEventListener("keydown", (event) =>{
+    const handleEscapeClose = (event) => {
       if (event.key === 'Escape' || event.key === 'Esc') {
-          closeModal(modal);
+        closeModal(modal);
       }
-    });
+    };
+    const handleOverlayClick = (event) => {
+      if (event.target === modal) {
+        closeModal(modal);
+      }
+    };
+  
+    modal.handleEscapeClose = handleEscapeClose;
+    modal.handleOverlayClick = handleOverlayClick;
+  
+    document.addEventListener('keydown', handleEscapeClose);
+    modal.addEventListener('click', handleOverlayClick);
 }
 //Close
 function closeModal(modal) {
   modal.classList.remove('modal_opened');
-  modal.removeEventListener('keydown');
+  modal.removeEventListener('keydown', (e) => {
+    closeModal(modal);
+  });
 }
 
 //Gets Cards
@@ -114,8 +127,9 @@ function handleProfileSubmit(e){
 //Add Card
 function renderCard(item, method = "prepend") {
   const cardElement = getCardElement(item);
-  cardList[ method ](cardElement);
+  cardListEl[ method ](cardElement);
   }
+
 function handleAddCardSubmit(e){
   e.preventDefault();
   const card = {
@@ -155,15 +169,6 @@ profileAddFormElement.addEventListener('submit', handleAddCardSubmit);
 initialCards.forEach((cardData) =>{
   cardListEl.prepend(getCardElement(cardData));
 })
-
-//Modals
-modals.forEach((modal) => {
-  modal.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      closeModal(modal);
-    }
-  });
-});
 
 //Closs Button 
 closeButtons.forEach((button) => {
