@@ -83,9 +83,6 @@ function openModal(modal) {
 //Close
 function closeModal(modal) {
   modal.classList.remove('modal_opened');
-  modal.removeEventListener('keydown', (e) => {
-    closeModal(modal);
-  });
 }
 
 //Gets Cards

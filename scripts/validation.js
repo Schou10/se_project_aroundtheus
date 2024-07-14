@@ -67,7 +67,7 @@ function enableValidation(options){
       e.preventDefault();
     });
     setEventListeners(formEl, options);
-    const inputEls = [...formEl.querySelectorAll(options.inputSelector)];
+    //const inputEls = [...formEl.querySelectorAll(options.inputSelector)];
     const submitButton = formEl.querySelector(options.submitButtonSelector);
   });
 }
