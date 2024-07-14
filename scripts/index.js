@@ -61,28 +61,27 @@ const previewTitle = document.querySelector(".modal__card-title");
 /*Functions*/
 
 //Open Modal
+function handleEscClose(event){
+  if(event.key === "Escape" || event.key === "Esc"){
+    const modal = document.querySelector('.modal_opened');
+    closeModal(modal);
+  }
+}
+
+function handleOverlayClick(event){
+  if(event.target.classList.contains("modal_opened")){
+    closeModal(event.target);
+  }
+}
 function openModal(modal) {
     modal.classList.add('modal_opened');
-    const handleEscapeClose = (event) => {
-      if (event.key === 'Escape' || event.key === 'Esc') {
-        closeModal(modal);
-      }
-    };
-    const handleOverlayClick = (event) => {
-      if (event.target === modal) {
-        closeModal(modal);
-      }
-    };
-  
-    modal.handleEscapeClose = handleEscapeClose;
-    modal.handleOverlayClick = handleOverlayClick;
-  
-    document.addEventListener('keydown', handleEscapeClose);
+    document.addEventListener('keydown', handleEscClose);
     modal.addEventListener('click', handleOverlayClick);
 }
 //Close
 function closeModal(modal) {
   modal.classList.remove('modal_opened');
+  document.removeEventListener("keydown", handleEscClose);
 }
 
 //Gets Cards
