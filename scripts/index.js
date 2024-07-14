@@ -170,7 +170,7 @@ initialCards.forEach((cardData) =>{
   cardListEl.prepend(getCardElement(cardData));
 })
 
-//Closs Button 
+//Close Button 
 closeButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const modal = button.closest('.modal');
