@@ -149,7 +149,8 @@
     margin: 0 19px;
   }
   .modal__heading {
-    font-size: 1.13em;
+    font-size: 1.125em;
+    line-height: 1.35;
     margin-bottom: 75px;
   }
   .modal__button {
