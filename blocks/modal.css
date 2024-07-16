@@ -27,6 +27,7 @@
   background: #fff;
   padding: 36px;
   border-radius: 10px;
+  max-width: 358px;
 }
 .modal__preview {
   background: none;
@@ -62,7 +63,7 @@
 
 .modal__button {
   min-height: 50px;
-  min-width: 358px;
+  max-width: 358px;
   background-color: #000;
   color: #fff;
   font-size: 1.13em;
@@ -149,9 +150,7 @@
     margin: 0 19px;
   }
   .modal__heading {
-    font-size: 1.125em;
     line-height: 1.35;
-    margin-bottom: 75px;
   }
   .modal__button {
     margin-top: 45px;
