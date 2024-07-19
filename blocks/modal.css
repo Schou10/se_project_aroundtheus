@@ -145,11 +145,11 @@
   }
   .modal__close-preview {
     width: 30px;
-    width: 30px;
     left: calc(100% - 22px);
     bottom: calc(100% - 22px);
   }
   .modal__container {
+    min-width: 240px;
     padding: 25px 22px;
     margin: 0 19px;
   }
