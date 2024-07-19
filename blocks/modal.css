@@ -117,6 +117,7 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 30px;
+  position: relative;
 }
 
 .modal__input_type_error {
@@ -131,6 +132,8 @@
   line-height: 0.9;
   text-wrap: wrap;
   max-width: 358px;
+  position: absolute;
+  top: 36px;
 }
 
 @media screen and (max-width: 630px) {
@@ -156,12 +159,5 @@
   }
   .modal__button {
     margin-top: 15px;
-  }
-  .modal__label {
-    position: relative;
-  }
-  .modal__error_visible {
-    position: absolute;
-    top: 36px;
   }
 }
