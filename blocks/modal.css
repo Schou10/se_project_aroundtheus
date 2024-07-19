@@ -27,7 +27,7 @@
   background: #fff;
   padding: 36px;
   border-radius: 10px;
-  width: 430px;
+  max-width: 430px;
 }
 .modal__preview {
   background: none;
