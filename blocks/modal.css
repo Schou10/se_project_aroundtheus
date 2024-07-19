@@ -27,7 +27,7 @@
   background: #fff;
   padding: 36px;
   border-radius: 10px;
-  max-width: 358px;
+  width: 430px;
 }
 .modal__preview {
   background: none;
@@ -63,7 +63,6 @@
 
 .modal__button {
   min-height: 50px;
-  max-width: 358px;
   background-color: #000;
   color: #fff;
   font-size: 1.13em;
