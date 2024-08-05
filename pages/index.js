@@ -40,7 +40,7 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg" 
 }
 
-const card = new Card(cardData, "card-template", handleImageClick);
+
 
 /*Elements*/
 //Buttons
@@ -74,6 +74,13 @@ const cardListEl = document.querySelector('.galary__cards');
 const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
 const previewImage = document.querySelector(".modal__image");
 const previewTitle = document.querySelector(".modal__card-title");
+//Card class
+const card = new Card(cardData, "card-template", handleImageClick);
+
+
+//Validators
+const editFormValidator = new FormValidator(validationSettings, profileEditFormElement);
+const addFormValidator = new FormValidator(validationSettings, profileAddFormElement);
 
 /*Functions*/
 
@@ -101,6 +108,9 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscClose);
   modal.removeEventListener('click', handleOverlayClick);
 }
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 //Gets Cards
 function getCardElement(cardData){
@@ -180,9 +190,6 @@ profileEditFormElement.addEventListener('submit', handleProfileSubmit);
 
 profileAddFormElement.addEventListener('submit', handleAddCardSubmit);
 
-initialCards.forEach((cardData) =>{
-  cardListEl.prepend(getCardElement(cardData));
-})
 
 //Close Button 
 closeButtons.forEach((button) => {
@@ -192,6 +199,8 @@ closeButtons.forEach((button) => {
   });
 });
 
-//Validators
-const editFormValidator = new FormValidator(validationSettings, profileEditFormElement);
-const addFormValidator = new FormValidator(validationSettings, profileAddFormElement);
+
+//Render Cards
+initialCards.forEach((cardData) =>{
+  cardListEl.prepend(getCardElement(cardData));
+})

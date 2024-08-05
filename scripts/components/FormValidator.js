@@ -9,7 +9,7 @@ export default class FormValidator {
 
   }
 
-  _hideInputError(){
+  _hideInputError(inputEl){
     this._errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`)
   inputEl.classList.remove(this._inputErrorClass);
   this._errorMessageEl.classList.remove(this._errorClass);
@@ -69,6 +69,5 @@ export default class FormValidator {
     this._form.addEventListener('submit', (e) => {
       e.preventDefault();
     });
-    _setEventListeners(formEl, options);
   };
 }
