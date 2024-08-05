@@ -27,6 +27,14 @@ const initialCards = [
   }
 ];
 
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible"
+}
+
 const cardData = { 
   name: "Lago di Braies",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg" 
@@ -183,3 +191,7 @@ closeButtons.forEach((button) => {
     closeModal(modal);
   });
 });
+
+//Validators
+const editFormValidator = new FormValidator(validationSettings, profileEditFormElement);
+const addFormValidator = new FormValidator(validationSettings, profileAddFormElement);
