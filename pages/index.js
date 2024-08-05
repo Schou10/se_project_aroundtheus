@@ -1,3 +1,5 @@
+import Card from "../scripts/components/card.js";
+import FormValidator from "../scripts/components/FormValidator.js";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -24,6 +26,13 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg" 
   }
 ];
+
+const cardData = { 
+  name: "Lago di Braies",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg" 
+}
+
+const card = new Card(cardData, "card-template", handleImageClick);
 
 /*Elements*/
 //Buttons
@@ -91,21 +100,13 @@ function getCardElement(cardData){
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector('.card__image');
   const cardTitleEl = cardElement.querySelector('.card__title');
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
+ // const likeButton = cardElement.querySelector(".card__like-button");
+  //const deleteButton = cardElement.querySelector(".card__delete-button");
   //listeners
-  likeButton.addEventListener('click', () =>{
-    likeButton.classList.toggle("card__like-button-active")
-  })
-  deleteButton.addEventListener('click', () =>{
-    cardElement.remove();
-  } )
-  cardImageEl.addEventListener('click', () =>{
-    previewImage.setAttribute('src', cardData.link)
-    previewImage.setAttribute('alt', cardData.name)
-    previewTitle.textContent = cardData.name;
-    openModal(previewImageModal);
-  })
+ // likeButton.addEventListener('click', () =>{
+ //   likeButton.classList.toggle("card__like-button-active")
+ // })
+ // cardImageEl.addEventListener('click', handleImageClick);
 
   cardImageEl.setAttribute('src', cardData.link);
   cardImageEl.setAttribute('alt', cardData.name);
@@ -114,6 +115,14 @@ function getCardElement(cardData){
 }
 
 /* Event Handlers */
+//Image Click
+function handleImageClick(e){
+  previewImage.setAttribute('src', cardData.link)
+  previewImage.setAttribute('alt', cardData.name)
+  previewTitle.textContent = cardData.name;
+  openModal(previewImageModal);
+}
+
 //Edit Profile
 function handleProfileSubmit(e){
   e.preventDefault();
