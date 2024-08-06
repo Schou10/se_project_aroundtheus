@@ -121,9 +121,15 @@ function handleProfileSubmit(e) {
 }
 
 function renderCard(item) {
-  const card = new Card(item, '#card-template', handleImageClick);
-  cardListEl.prepend(card.getView());
+  const card = createCard(item);
+  cardListEl.prepend(card);
 }
+
+function createCard(item) {
+  const cardElement = new Card(item, '#card-template', handleImageClick);
+return cardElement.getView()
+}
+
 //add card
 function handleAddCardSubmit(e) {
   e.preventDefault();
