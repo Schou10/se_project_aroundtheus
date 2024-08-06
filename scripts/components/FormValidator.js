@@ -62,6 +62,11 @@ export default class FormValidator {
         this._toggleButtonState();
       });
     });
+    this._form.addEventListener('reset', () => {
+      setTimeout(() => {
+        this._toggleButtonState();
+      }, 0);
+    });
   }
 
   enableValidation() {
