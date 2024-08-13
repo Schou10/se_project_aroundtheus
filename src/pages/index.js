@@ -1,39 +1,8 @@
-import Card from "../scripts/components/card.js";
-import FormValidator from "../scripts/components/FormValidator.js";
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg" 
-  },
-  {
-    name: "Lake Louisey",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg" 
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg" 
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg" 
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg" 
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg" 
-  }
-];
-
-const validationSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible"
-} 
+import Card from "../components/card.js";
+import Section from "../components/Section.js";
+import FormValidator from "../components/FormValidator.js";
+import { initialCards, validationSettings } from "../utils/constants.js";
+import "../pages/index.css";
 
 /* Elements */ 
 //button
@@ -73,39 +42,44 @@ const addFormValidator = new FormValidator(validationSettings, profileAddFormEle
 
 
 /* Functions*/
-//Open Modal
+/*//Open Modal
 function handleEscClose(event) {
   if (event.key === "Escape" || event.key === "Esc") {
     const modal = document.querySelector('.modal_opened');
     closeModal(modal);
   }
-}
+}*/
 
+/*
 function handleOverlayClick(event) {
   if (event.target.classList.contains("modal_opened")) {
     closeModal(event.target);
   }
 }
+  */
 
+/*//open
 function openModal(modal) {
   modal.classList.add('modal_opened');
   document.addEventListener('keydown', handleEscClose);
   modal.addEventListener('click', handleOverlayClick);
 }
+*/
 
-//close
+/*//close
 function closeModal(modal) {
   modal.classList.remove('modal_opened');
   document.removeEventListener("keydown", handleEscClose);
   modal.removeEventListener('click', handleOverlayClick);
 }
-
+*/
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
 
 /*Event Handlers*/
-function handleImageClick(name, link) {
+//Handle Image Click
+function handleImageClick(cardData) {
   previewImage.setAttribute('src', link);
   previewImage.setAttribute('alt', name);
   previewTitle.textContent = name;
@@ -119,16 +93,19 @@ function handleProfileSubmit(e) {
   profileName.textContent = profileNameInput.value;
   closeModal(profileEditModal);
 }
-
+/*
 function renderCard(item) {
   const card = createCard(item);
   cardListEl.prepend(card);
 }
+*/
 
+//Create Card
 function createCard(item) {
   const cardElement = new Card(item, '#card-template', handleImageClick);
 return cardElement.getView()
 }
+
 
 //add card
 function handleAddCardSubmit(e) {
@@ -146,30 +123,37 @@ function fillProfileForm() {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 }
-
+/*
 function openEditProfileModal() {
   fillProfileForm();
   openModal(profileEditModal);
 }
-
-// Event Listeners
+*/
+/*// Event Listeners
 profileEditButton.addEventListener('click', openEditProfileModal);
+*/
 
-addNewCardButton.addEventListener('click', () => {
+/*addNewCardButton.addEventListener('click', () => {
   openModal(addCardModal);
 });
-
+*/
 profileEditFormElement.addEventListener('submit', handleProfileSubmit);
 profileAddFormElement.addEventListener('submit', handleAddCardSubmit);
-
+/*
 closeButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const modal = button.closest('.modal');
     closeModal(modal);
   });
 });
-
+*/
 // Render initial cards
-initialCards.forEach((cardData) => {
-  renderCard(cardData);
-});
+const section = new Section({
+  data : initialCards,
+  renderer : (cardData) => {
+    const cardElement = createCard(cardData);
+    cardListEl.addItem(cardElement);}}, 
+  '.galary__cards');
+
+  
+
