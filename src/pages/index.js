@@ -1,13 +1,11 @@
 import Card from "../components/card.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
+import UserInfo  from "../components/UserInfo.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithImage from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
 import "../pages/index.css";
-import { UserInfo } from "../components/UserInfo.js";
-import Popup from "../components/Popup.js";
-
 
 //Create Card
 function createCard(item) {
@@ -17,8 +15,19 @@ return cardElement.getView()
 
 //Handle Image Click
 function handleImageClick(cardData) {
-  imagePopup.open();
+  console.log(cardData);
+
+  // you are receiving here, for example:
+  //   {
+  //     "_name": "Lago di Braies",
+  //     "_link": "https://practicum-content.s3.us-west-  1.amazonaws.com/software-engineer/around-project/lago.jpg",
+  //     "_cardSelector": "#card-template",
+  //     "_cardElement": {},
+  //     "_cardImageElement": {}
+  // }
+  imagePopup.open(cardData);
 }
+
 
 //Card List
 const cardListEl = document.querySelector('.galary__cards');
@@ -31,17 +40,15 @@ const section = new Section({
     section.addItems(cardElement);
   }
 }, '.galary__cards');
-
-
 section.renderItems(initialCards);
 
 
 /* Elements */ 
 
 //popups
-const editPopup = new PopupWithForm('#profile-edit-modal', handleProfileSubmit)
+const editPopup = new PopupWithForm('#profile-edit-modal', handleProfileSubmit);
 const addcardPopup = new PopupWithForm('#add-card-modal', handleAddCardSubmit);
-const imagePopup = new PopupWithImage('#image-modal', cardElement); 
+const imagePopup = new PopupWithImage('#image-modal', handleImageClick); 
 
 //button
 const profileEditButton = document.querySelector('#profile-edit-button');
@@ -55,6 +62,7 @@ const previewImageModal = document.querySelector("#image-modal");
 
 //profile data
 const profileName = document.querySelector("#name");
+
 const profileDescription = document.querySelector('#profile-description');
 
 //user info
@@ -68,7 +76,7 @@ const addCardURL = document.querySelector("#modal-url");
 
 //forms
 const profileEditFormElement = document.querySelector("#profile-edit-form");
-const profileAddFormElement = document.querySelector("#profile-add-form");
+const profileAddFormElement = document.querySelector("#add-card-form");
 
 //cards
 
@@ -91,7 +99,7 @@ addFormValidator.enableValidation();
 
 //edit profile
 function handleProfileSubmit(e) {
-  userInfo.setUserInfo();
+  userInfo.setUserInfo(e);
   editPopup.close()
 }
 
@@ -125,12 +133,4 @@ addNewCardButton.addEventListener('click', () => {
 
 profileEditFormElement.addEventListener('submit', handleProfileSubmit);
 profileAddFormElement.addEventListener('submit', handleAddCardSubmit);
-/*
-closeButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const modal = button.closest('.modal');
-    closeModal(modal);
-  });
-});
-*/
 
