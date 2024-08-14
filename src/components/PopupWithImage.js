@@ -13,10 +13,10 @@ export class PopupWithImage extends Popup{
   }
   open(data){
    // set the image's src and alt
-    this._popupImage.src = data._link;
-    this._popupImage.alt = data._name;
+    this._popupImage.src = data.link;
+    this._popupImage.alt = data.name;
    // set the caption's textContent
-    this._popupTitle.textContent = data._name;
+    this._popupTitle.textContent = data.name;
     super.open();
   }
 }
