@@ -13,7 +13,7 @@ import "../pages/index.css";
 //Card List
 const cardListEl = document.querySelector('.galary__cards');
 
-// Render initial cards
+// Render initial cards in using Section Class
 const section = new Section({
   data: initialCards,
   renderer: (cardData) => {
@@ -76,15 +76,17 @@ function handleImageClick(cardData) {
 
 /*Event Handlers*/
 //edit profile
-function handleProfileSubmit(e) {
-  userInfo.setUserInfo(e);
+function handleProfileSubmit() {
+  userInfo.setUserInfo();
   editPopup.close()
 }
 
 
 //add card
-function handleAddCardSubmit(e) {
-  e.preventDefault();
+function handleAddCardSubmit() {
+  const cardTitle = addCardTitle.value.trim();
+  const cardURL = addCardURL.value.trim();
+  if (cardTitle && cardURL){
   const card = {
     name: addCardTitle.value,
     link: addCardURL.value
@@ -94,6 +96,7 @@ function handleAddCardSubmit(e) {
   addcardPopup.close();
   profileAddFormElement.reset();
   addFormValidator._disableButton();
+  } else {return;}
 }
 
 function openEditProfileModal() {
@@ -107,3 +110,6 @@ profileEditButton.addEventListener('click', openEditProfileModal);
 addNewCardButton.addEventListener('click', () => {
   addcardPopup.open();
 });
+
+editPopup.setEventListeners();
+addcardPopup.setEventListeners();
