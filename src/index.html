@@ -35,9 +35,7 @@
               type="button"
               aria-label="edit button"
             ></button>
-            <p class="profile__description" id="profile-description">
-              Explorer
-            </p>
+            <p class="profile__description" id="description">Explorer</p>
           </div>
 
           <button
@@ -70,12 +68,12 @@
               class="modal__input modal__input_type_name"
               name="name"
               placeholder="Name"
-              id="modal-name"
+              id="name-input"
               minlength="2"
               maxlength="40"
               required
             />
-            <span class="modal__error" id="modal-name-error"></span>
+            <span class="modal__error" id="name-input-error"></span>
           </label>
           <label class="modal__label">
             <input
@@ -83,12 +81,12 @@
               class="modal__input modal__input_type_description"
               name="description"
               placeholder="Description"
-              id="modal-description"
+              id="description-input"
               minlength="2"
               maxlength="200"
               required
             />
-            <span class="modal__error" id="modal-description-error"></span>
+            <span class="modal__error" id="description-input-error"></span>
           </label>
           <button
             class="modal__button button"
@@ -115,12 +113,12 @@
               class="modal__input modal__input_type_title"
               name="title"
               placeholder="Title"
-              id="modal-add-title"
+              id="title-input"
               required
               minlength="2"
               maxlength="40"
             />
-            <span class="modal__error" id="modal-add-title-error"></span>
+            <span class="modal__error" id="title-input-error"></span>
           </label>
           <label class="modal__label">
             <input
@@ -128,12 +126,12 @@
               class="modal__input modal__input_type_url"
               name="url"
               placeholder="Image URL"
-              id="modal-url"
+              id="url-input"
               required
               minlength="2"
               maxlength="200"
             />
-            <span class="modal__error" id="modal-url-error"></span>
+            <span class="modal__error" id="url-input-error"></span>
           </label>
           <button
             class="modal__button button modal__button_disabled"

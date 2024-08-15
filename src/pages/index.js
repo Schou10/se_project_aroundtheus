@@ -7,12 +7,6 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import "../pages/index.css";
 
-
-
-
-//Card List
-const cardListEl = document.querySelector('.galary__cards');
-
 // Render initial cards in using Section Class
 const section = new Section({
   data: initialCards,
@@ -35,17 +29,15 @@ const imagePopup = new PopupWithImage('#image-modal', handleImageClick);
 const profileEditButton = document.querySelector('#profile-edit-button');
 const addNewCardButton = document.querySelector("#profile-add-button");
 
-//profile data
-const profileName = document.querySelector("#name");
+//profile name & description / user info
+const userNameInput = document.querySelector("#name-input");
+const userJobInput = document.querySelector("#description-input");
 
-const profileDescription = document.querySelector('#profile-description');
+const userInfo = new UserInfo("#name", "#description")
 
-//user info
-const userInfo = new UserInfo(profileName, profileDescription)
-
-//modal data
-const addCardTitle = document.querySelector("#modal-add-title");
-const addCardURL = document.querySelector("#modal-url");
+//modal  add card data
+const addCardTitle = document.querySelector("#title-input");
+const addCardURL = document.querySelector("#url-input");
 
 //forms
 const profileEditFormElement = document.querySelector("#profile-edit-form");
@@ -66,20 +58,22 @@ function createCard(item) {
   const cardElement = new Card(item, '#card-template', handleImageClick);
 return cardElement.getView()
 }
-
-//Handle Image Click
+/*Event Handlers*/
+//image click
 function handleImageClick(cardData) {
     imagePopup.open(cardData);
 }
 
-
-
-/*Event Handlers*/
 //edit profile
 function handleProfileSubmit() {
-  userInfo.setUserInfo();
-  editPopup.close()
-}
+  const userName =  userNameInput.value.trim();
+  const userJob =  userJobInput.value.trim();
+  if (userName && userJob){
+    userInfo.setUserInfo();
+    editPopup.close();
+  } else{return;}
+  
+  }
 
 
 //add card

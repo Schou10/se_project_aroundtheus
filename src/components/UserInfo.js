@@ -1,17 +1,19 @@
 export default class UserInfo{
-  constructor(name, job){
-    this._name = name;
-    this._job = job;
-    this._nameInput = document.querySelector("#modal-name");
-    this._jobInput = document.querySelector("#modal-description");
+  constructor(nameSelctor, jobSelector){
+    this._nameElement = document.querySelector(nameSelctor);
+    this._jobElement = document.querySelector(jobSelector);
+    this._nameInput = document.querySelector(`${nameSelctor}-input`);
+    this._jobInput = document.querySelector(`${jobSelector}-input`);
   }
   getUserInfo(){
-    this._nameInput.value = this._name.textContent;
-    this._jobInput.value = this._job.textContent;
+    this._nameInput.value = this._nameElement.textContent;
+    this._jobInput.value = this._jobElement.textContent;
+    
+    
   }
-  setUserInfo(e){
-    e.preventDefault();
-    this._name.textContent = this._nameInput.value;
-    this._job.textContent = this._jobInput.value;
+  setUserInfo(){
+    this._nameElement.textContent = this._nameInput.value;
+    this._jobElement.textContent = this._jobInput.value; 
+    console.log(this._nameElement.textContent, this._jobElement.textContent) 
 }
   }
