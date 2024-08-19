@@ -5,8 +5,6 @@ export class PopupWithImage extends Popup{
     super(popupSelector);
     this._popupImage = this._popupElement.querySelector('.modal__image');
     this._popupTitle = this._popupElement.querySelector('.modal__card-title');
-    this._name = data.name;
-    this._link = data.link
     
     
 

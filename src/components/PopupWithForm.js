@@ -10,7 +10,6 @@ export class PopupWithForm extends Popup{
 
   close() {
     super.close();
-     this._popupForm.reset();
   }
 
   setEventListeners() {
@@ -18,9 +17,12 @@ export class PopupWithForm extends Popup{
     this._popupForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const inputValues = this._getInputValues();
-      this._handleFormSubmit(inputValues);
+      console.log(inputValues);
+      if(!inputValues == ''){
+        this._handleFormSubmit(inputValues);
+        this._popupForm.reset();
+      }
     });
-    ;
   }
 
   _getInputValues() {
@@ -30,4 +32,12 @@ export class PopupWithForm extends Popup{
     });
     return formValues;
   }
+  setInputValues(data) {
+    console.log(data);
+    this.inputList.forEach((input) => {
+      // Here you insert the `value` by the `name` of the input
+      input.value = data[input.name];
+    });
+  }
+
 }

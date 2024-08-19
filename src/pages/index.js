@@ -15,7 +15,6 @@ const section = new Section({
     section.addItems(cardElement);
   }
 }, '.galary__cards');
-section.renderItems(initialCards);
 
 
 /* Elements */ 
@@ -35,13 +34,9 @@ const userJobInput = document.querySelector("#description-input");
 
 const userInfo = new UserInfo("#name", "#description")
 
-//modal  add card data
-const addCardTitle = document.querySelector("#title-input");
-const addCardURL = document.querySelector("#url-input");
-
 //forms
-const profileEditFormElement = document.querySelector("#profile-edit-form");
-const profileAddFormElement = document.querySelector("#add-card-form");
+const profileEditFormElement = document.forms["profile-edit-form"];
+const profileAddFormElement = document.forms["add-card-form"];
 
 //validators
 const editFormValidator = new FormValidator(validationSettings, profileEditFormElement);
@@ -65,36 +60,31 @@ function handleImageClick(cardData) {
 }
 
 //edit profile
-function handleProfileSubmit() {
-  const userName =  userNameInput.value.trim();
-  const userJob =  userJobInput.value.trim();
-  if (userName && userJob){
-    userInfo.setUserInfo();
-    editPopup.close();
-  } else{return;}
-  
-  }
-
+function handleProfileSubmit(data) {
+    const userName = userNameInput.value.trim();
+    const userJob = userJobInput.value.trim();
+    if (userName && userJob){
+      userInfo.setUserInfo({name: userName, job: userJob});
+    }
+editPopup.close(); }
 
 //add card
-function handleAddCardSubmit() {
-  const cardTitle = addCardTitle.value.trim();
-  const cardURL = addCardURL.value.trim();
-  if (cardTitle && cardURL){
+function handleAddCardSubmit(data) {
   const card = {
-    name: addCardTitle.value,
-    link: addCardURL.value
+    name: data.title,
+    link: data.url
   };
   const cardElement = createCard(card);
   section.addItems(cardElement);
   addcardPopup.close();
   profileAddFormElement.reset();
-  addFormValidator._disableButton();
-  } else {return;}
+  addFormValidator.disableButton();
 }
 
 function openEditProfileModal() {
-  userInfo.getUserInfo();
+  const currentUser = userInfo.getUserInfo();
+  userNameInput.value = currentUser.name;
+  userJobInput.value = currentUser.job;
   editPopup.open();
 }
 
@@ -104,6 +94,3 @@ profileEditButton.addEventListener('click', openEditProfileModal);
 addNewCardButton.addEventListener('click', () => {
   addcardPopup.open();
 });
-
-editPopup.setEventListeners();
-addcardPopup.setEventListeners();
