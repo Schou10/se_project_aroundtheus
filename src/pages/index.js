@@ -15,6 +15,7 @@ const section = new Section({
     section.addItems(cardElement);
   }
 }, '.galary__cards');
+section.renderItems(initialCards);
 
 
 /* Elements */ 

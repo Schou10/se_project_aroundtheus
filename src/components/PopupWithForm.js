@@ -18,10 +18,8 @@ export class PopupWithForm extends Popup{
       e.preventDefault();
       const inputValues = this._getInputValues();
       console.log(inputValues);
-      if(!inputValues == ''){
         this._handleFormSubmit(inputValues);
         this._popupForm.reset();
-      }
     });
   }
 
