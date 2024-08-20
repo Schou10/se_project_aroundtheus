@@ -62,11 +62,7 @@ function handleImageClick(cardData) {
 
 //edit profile
 function handleProfileSubmit(data) {
-    const userName = userNameInput.value.trim();
-    const userJob = userJobInput.value.trim();
-    if (userName && userJob){
-      userInfo.setUserInfo({name: userName, job: userJob});
-    }
+  userInfo.setUserInfo({name: data.name, job: data.description});
 editPopup.close(); }
 
 //add card
@@ -95,3 +91,7 @@ profileEditButton.addEventListener('click', openEditProfileModal);
 addNewCardButton.addEventListener('click', () => {
   addcardPopup.open();
 });
+
+editPopup.setEventListeners();
+addcardPopup.setEventListeners();
+imagePopup.setEventListeners();
