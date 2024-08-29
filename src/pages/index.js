@@ -35,6 +35,9 @@ api.getInitialCards()
 
 //Get User info
 api.getUserInfo()
+  .then(data => {
+
+  })
 
 
 
@@ -53,7 +56,7 @@ const addNewCardButton = document.querySelector("#profile-add-button");
 const userNameInput = document.querySelector("#name-input");
 const userJobInput = document.querySelector("#description-input");
 
-const userInfo = new UserInfo("#name", "#description")
+const userInfo = new UserInfo("#name", "#description", "#avatar")
 
 //forms
 const profileEditFormElement = document.forms["profile-edit-form"];
