@@ -17,7 +17,7 @@ const api = new Api({
   }
 });
 
-// Render initial cards in using Section Class
+// Render initial cards
 api.getInitialCards()
   .then(cards => {
     const section = new Section({
@@ -32,6 +32,9 @@ api.getInitialCards()
   .catch(err => {
     console.error(err);
   })
+
+//Get User info
+api.getUserInfo()
 
 
 
@@ -112,6 +115,3 @@ addNewCardButton.addEventListener('click', () => {
 editPopup.setEventListeners();
 addcardPopup.setEventListeners();
 imagePopup.setEventListeners();
-
-
-//fetch
