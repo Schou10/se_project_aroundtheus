@@ -1,3 +1,4 @@
+import Api from "../components/API.js";
 import Card from "../components/card.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
@@ -7,15 +8,31 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import "../pages/index.css";
 
+// API
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    "Content-Type": "application/json"
+  }
+});
+
 // Render initial cards in using Section Class
-const section = new Section({
-  data: initialCards,
+api.getInitialCards()
+  .then(cards => {
+    const section = new Section({
+  data: cards,
   renderer: (cardData) => {
     const cardElement = createCard(cardData);
     section.addItems(cardElement);
-  }
-}, '.galary__cards');
-section.renderItems(initialCards);
+    }
+  }, '.galary__cards');
+  section.renderItems(cards);
+  })
+  .catch(err => {
+    console.error(err);
+  })
+
 
 
 /* Elements */ 
@@ -95,3 +112,6 @@ addNewCardButton.addEventListener('click', () => {
 editPopup.setEventListeners();
 addcardPopup.setEventListeners();
 imagePopup.setEventListeners();
+
+
+//fetch
