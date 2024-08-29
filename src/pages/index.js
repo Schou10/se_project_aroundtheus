@@ -49,7 +49,7 @@ const imagePopup = new PopupWithImage('#image-modal', handleImageClick);
 const profileEditButton = document.querySelector('#profile-edit-button');
 const addNewCardButton = document.querySelector("#profile-add-button");
 
-//profile name & description / user info
+//profile name & description / user info / use Profile img
 const userNameInput = document.querySelector("#name-input");
 const userJobInput = document.querySelector("#description-input");
 
