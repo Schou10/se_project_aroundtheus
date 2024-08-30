@@ -147,7 +147,7 @@
     </div>
     <!--Image Modal-->
     <div class="modal" id="image-modal">
-      <div class="modal__container modal__preview">
+      <div class="modal__container">
         <button
           class="modal__close modal__close-preview button"
           id="modal-image-close-button"
@@ -157,32 +157,33 @@
       </div>
     </div>
     <!--Delete Modal-->
-    <div class="modlal" id="delete-modal">
-      <div class="modal__container modal__preview">
+    <div class="modal" id="delete-modal">
+      <div class="modal__container">
         <button
-          class="modal__close modal__close-preview button"
+          class="modal__close button"
           id="modal-delete-close-button"
         ></button>
         <h2 class="modal__heading">Are you sure?</h2>
-        <button
-          class="delete-confirm-button button"
-          id="delete-confirm-button"
-          type="button"
-          aria-label="delete-confirm-button"
-        >
-          Yes
-        </button>
+        <form class="modal__form" id="delete-form">
+          <button
+            class="modal__button button modal__button_disabled"
+            id="delete-confirm-button"
+            type="submit"
+          >
+            Yes
+          </button>
+        </form>
       </div>
     </div>
     <!--Avatar Modal-->
-    <div class="modlal" id="avatar-modal">
-      <div class="modal__container modal__preview">
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
         <button
           class="modal__close modal__close-preview button"
           id="modal-avata-close-button"
         ></button>
         <h2 class="modal__heading">Change profile picture</h2>
-        <form class="modal__form" id="add-card-form">
+        <form class="modal__form" id="avatar-form">
           <label class="modal__label">
             <input
               type="url"

@@ -13,7 +13,8 @@ export default class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
+      method: "GET",
+      headers: this._headers,
     })
       .then(this._checkResonse);
   }
@@ -63,7 +64,7 @@ export default class Api {
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authourization: "Bearer  91b601cc-d5b2-405d-a21a-614e7e8f57e7",
     "Content-Type": "application/json"
   }
 });
