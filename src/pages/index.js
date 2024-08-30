@@ -103,10 +103,7 @@ function handleProfileSubmit(data) {
   userInfo.setUserInfo({name: data.name, job: data.description});
   editPopup.close(); }
 
-//avatar
-function handleAvatarSubmit(data){
-  userInfo.
-  avatarPopup.close();}
+
 
 //add card
 function handleAddCardSubmit(data) {
@@ -119,6 +116,15 @@ function handleAddCardSubmit(data) {
   addcardPopup.close();
   profileAddFormElement.reset();
   addFormValidator.disableButton();
+}
+//avatar
+function handleAvatarSubmit(data){
+  userInfo.
+  avatarPopup.close();}
+
+  //delete
+function handleDeleteSubmit(data){
+
 }
 
 function openEditProfileModal() {
