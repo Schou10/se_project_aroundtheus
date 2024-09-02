@@ -1,9 +1,10 @@
 export default class Card {
-  constructor(data, cardSelector, handleImageClick) {
+  constructor(data, cardSelector, handleImageClick, handleDeleteSubmit) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteSubmit = handleDeleteSubmit;
   }
 
   _getTemplate() {
@@ -21,8 +22,8 @@ export default class Card {
       this._handleLikeIcon();
     });
 
-    this._trashButton.addEventListener('click', () => {
-      this._handleDeleteCard();
+    this._deleteButton.addEventListener('click', () => {
+      this._handleDeleteSubmit(this);
     });
 
     this._cardImageElement.addEventListener('click', () => {
@@ -37,7 +38,7 @@ export default class Card {
     this._likeButton.classList.toggle('card__like-button-active');
   }
 
-  _handleDeleteCard() {
+  deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
@@ -46,8 +47,7 @@ export default class Card {
     this._cardElement = this._getTemplate();
     this._likeButton = this._cardElement.querySelector(".card__like-button")
     this._cardImageElement = this._cardElement.querySelector('.card__image');
-    this._trashButton = this._cardElement.querySelector('.card__delete-button')
-
+    this._deleteButton = this._cardElement.querySelector('.card__delete-button')
     this._cardImageElement.setAttribute('src', this._link);
     this._cardImageElement.setAttribute('alt', this._name);
     this._cardElement.querySelector('.card__title').textContent = this._name;

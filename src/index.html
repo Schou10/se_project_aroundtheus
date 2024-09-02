@@ -22,12 +22,22 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.png')%>"
-            alt="profile picture"
-            class="profile__image"
-            id="avatar"
-          />
+          <div class="profile__photo-container">
+            <img
+              src="<%=require('./images/jacques-cousteau.png')%>"
+              alt="profile picture"
+              class="profile__image"
+              id="avatar"
+            />
+            <div class="profile__overlay">
+              <img
+                src="<%=require('./images/edit.svg')%>"
+                alt="Change Photo"
+                class="profile__icon"
+                id="avatar-overlay"
+              />
+            </div>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title" id="name">Jacques Cousteau</h1>
             <button
@@ -147,7 +157,7 @@
     </div>
     <!--Image Modal-->
     <div class="modal" id="image-modal">
-      <div class="modal__preview">
+      <div class="modal__container modal__preview">
         <button
           class="modal__close modal__close-preview button"
           id="modal-image-close-button"

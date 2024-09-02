@@ -33,7 +33,8 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        job: data.job
+        job: data.job,
+        avatar: data.avatar
       })
     })
     .then(this._checkResonse);
