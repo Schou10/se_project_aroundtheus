@@ -26,7 +26,7 @@ const section = new Section({
     }
   }, '.galary__cards');
   
-
+//
 
 api.getInitialCards()
   .then(cards => {
