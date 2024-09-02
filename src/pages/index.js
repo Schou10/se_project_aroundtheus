@@ -119,7 +119,7 @@ function handleAddCardSubmit(data) {
 }
 //avatar
 function handleAvatarSubmit(data){
-  user.setUserInfo({avatar: data.avatar});
+  user.setUserInfo({avatar: data.url});
   avatarPopup.close();
 }
 
