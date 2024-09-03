@@ -14,4 +14,15 @@ export default class Section {
   addItems(element) {
     this._container.prepend(element);
   }
+
+  clearItems() {
+    this._container.innerHTML = ''; 
+  }
+
+  renderInitialItems(items) {
+    this.clearItems(); 
+    items.forEach(item => {
+      this._renderer(item);
+    });
+  }
 }

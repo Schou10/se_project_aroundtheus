@@ -22,18 +22,27 @@ export default class Api {
   // other methods for working with the API
   getUserInfo(){
     return fetch(`${this._baseUrl}/users/me`,{
+      method :"GET",
       headers: this._headers
     })
     .then(this._checkResonse);
   }
 
-  updatUserInfo(data){
+  updateUserInfo(data){
+    console.log('Updating user with:', data);
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
+      body: JSON.stringify(data)
+    })
+    .then(this._checkResonse);
+  }
+
+  updateUserAvatar(data){
+    return fetch(`${this._baseUrl}/users/me/avatar`,{
+      method: "PATCH",
+      headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        job: data.job,
         avatar: data.avatar
       })
     })
@@ -58,6 +67,22 @@ export default class Api {
       headers: this._headers
     })
     .then(this._checkResonse);
+  }
+
+  addLike(cardId){
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+    .then(this._checkResponse);
+  }
+
+  removeLike(cardId){
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(this._checkResponse);
   }
 
   }

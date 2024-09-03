@@ -8,12 +8,12 @@ export default class UserInfo{
   getUserInfo(){
     return {
       name: this._nameElement.textContent, 
-      job: this._jobElement.textContent,
+      about: this._jobElement.textContent,
       avatar: this._avatarElement.src};    
   }
   setUserInfo(data){
     if (data.name) this._nameElement.textContent = data.name;
-    if(data.job) this._jobElement.textContent = data.job;
+    if(data.about) this._jobElement.textContent = data.about;
     if(data.avatar) this._avatarElement.src = data.avatar;
   }
 }
