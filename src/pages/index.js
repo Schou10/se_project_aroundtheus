@@ -3,7 +3,7 @@ import Card from "../components/card.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import UserInfo  from "../components/UserInfo.js";
-import { initialCards, validationSettings } from "../utils/constants.js";
+import { validationSettings } from "../utils/constants.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import "../pages/index.css";
@@ -19,7 +19,6 @@ const api = new Api({
 
 // Render initial cards
 const section = new Section({
-  data: [],
   renderer: (cardData) => {
     const cardElement = createCard(cardData);
     section.addItems(cardElement);
@@ -43,8 +42,8 @@ api.getUserInfo()
 
 api.getInitialCards()
   .then(cards => {
+    console.log(cards[1]);
     section.renderInitialItems(cards);
-    console.log(cards);
   })
   .catch(err => {
     console.error(`Error fetcting initial cards: ${err}`);
@@ -64,7 +63,6 @@ const avatarPopup = new PopupWithForm('#avatar-modal', handleAvatarSubmit);
 const profileEditButton = document.querySelector('#profile-edit-button');
 const addNewCardButton = document.querySelector("#profile-add-button");
 const avatar = document.querySelector("#avatar-overlay");
-const confirmButton = document.querySelector('#delete-confirm-button');
 
 //profile name & description / user info / use Profile img
 const userNameInput = document.querySelector("#name-input");
@@ -158,30 +156,18 @@ function handleAvatarSubmit(data){
 
 //delete
 function handleDeleteSubmit(card){
-  console.log(card);
-  const cardId = card.getId();
+  if(card){const confirmButton = document.querySelector('#delete-confirm-button');
   deletePopup.open();
-  function onConfirmClick() {
-    console.log('Confirmed delete for card ID:', cardId);
-    api.deleteCard(cardId)
-    .then(() =>{
-      console.log('Card deleted successfully:', cardId);
-      card.removeCard();
-      deletePopup.close();
-      cleanUp();
-    })
-    .catch(err =>{ 
-      console.error(`Error deleting card: ${err}`)
-      confirmButton.removeEventListener('click', onConfirmClick);
-    });
-  }
-  function cleanUp(){
-    confirmButton.removeEventListener('click', onConfirmClick);
-    console.log('Clean up event listener');
-  } 
-  confirmButton.addEventListener('click', onConfirmClick); 
+  confirmButton.addEventListener('click', function onConfirmClick() {
+    card.removeCard();
+    api.deleteCard(card._id);
+    deletePopup.close();
+    confirmButton.removeEventListener('click', onConfirmClick)
+  })}
+  
 }
 
+//like
 function handleCardLike(card){
   const isLiked = card.isLiked(); 
 
@@ -190,9 +176,11 @@ function handleCardLike(card){
     : api.addLike(card.getId()); 
 
   likePromise
+    .then(response =>  response.json())
     .then(updatedCardData => {
-      card.updateLikes(updatedCardData.likes); 
-      card.toggleLikeButton(); 
+      console.log(updatedCardData);
+      card.updateLikes(updatedCardData.isLiked); 
+      card.toggleLikeIcon(); 
     })
     .catch(err => console.error(`Error updating like status: ${err}`));
 }
