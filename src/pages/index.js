@@ -42,7 +42,6 @@ api.getUserInfo()
 
 api.getInitialCards()
   .then(cards => {
-    console.log(cards[1]);
     section.renderInitialItems(cards);
   })
   .catch(err => {
@@ -169,6 +168,7 @@ function handleDeleteSubmit(card){
 
 //like
 function handleCardLike(card){
+  console.log(card);
   const isLiked = card.isLiked(); 
 
   const likePromise = isLiked
@@ -178,8 +178,8 @@ function handleCardLike(card){
   likePromise
     .then(response =>  response.json())
     .then(updatedCardData => {
-      console.log(updatedCardData);
-      card.updateLikes(updatedCardData.isLiked); 
+      console.log(`Card: ${card}, Card _userId: ${card._userId},This is the updated CardData: ${updatedCardData.isLiked}`);
+      card.updateLikes(card._userId , updatedCardData.isLiked); 
       card.toggleLikeIcon(); 
     })
     .catch(err => console.error(`Error updating like status: ${err}`));

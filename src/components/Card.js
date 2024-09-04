@@ -11,6 +11,7 @@ export default class Card {
     this._handleDeleteSubmit = handleDeleteSubmit;
     this._handleCardLike = handleCardLike;
     this._element = this._getTemplate();
+    console.log(`_isLiked:${this._isLiked}, _userId: ${this._userId}`);
   }
 
   _getTemplate() {
@@ -43,18 +44,28 @@ export default class Card {
     return this._isliked;
   }
 
-  updateLikes(newLike) {
-    console.log(newLike);
-    console.log(this._element);
-    this._likes.push(newLike);
-    console.log(this._likes);
-    this._isliked = this._likes.some(like => like._id === this._userId);  // Update the isLiked boolean
-    console.log(this._element);
+  updateLikes(userId, updatedLike) {
+    const newLike = {_id: userId, isLiked: updatedLike}; 
+    console.log("Likes list: ", this._likes, "New Like: ", updatedLike);
+    console.log(`_like.some(like => like == newLike): ${this._likes.some(like => like == newLike)}`);
+    if(!this._likes.some(like => like == newLike)) {
+      console.log("Like Added");
+      this._likes.push(newLike); //Adds like to list
+    }
+    else {
+      console.log("Like Removed")
+      this._likes.pop(newLike); //Removes like from list
+    }
+    console.log(`_like.some(like => like == newLike): ${this._likes.some(like => like == newLike)}`);
+    this._isLiked = this._likes.some(like => like._id === this._userId);  // Update the isLiked boolean
+    console.log(this._isLiked);
     this._element.querySelector('.card__like-count').textContent = this._likes.length;
   }
 
   toggleLikeIcon() {
+    console.log("This like button is",this._isLiked);
     this._likeButton.classList.toggle('card__like-button-active', this._isLiked);
+    console.log("Like button toggled", this._isLiked);
   }
 
   getId() {
