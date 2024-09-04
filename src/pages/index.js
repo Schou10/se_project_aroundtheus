@@ -168,7 +168,6 @@ function handleDeleteSubmit(card){
 
 //like
 function handleCardLike(card){
-  console.log(card);
   const isLiked = card.isLiked(); 
 
   const likePromise = isLiked
@@ -178,7 +177,6 @@ function handleCardLike(card){
   likePromise
     .then(response =>  response.json())
     .then(updatedCardData => {
-      console.log(`Card: ${card}, Card _userId: ${card._userId},This is the updated CardData: ${updatedCardData.isLiked}`);
       card.updateLikes(card._userId , updatedCardData.isLiked); 
       card.toggleLikeIcon(); 
     })

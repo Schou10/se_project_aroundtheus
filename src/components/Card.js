@@ -3,15 +3,14 @@ export default class Card {
     this._id = data._id;
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes || [];
-    this._isLiked = this._likes.some(like => like._id === this._userId);
+    this._isLiked = data.isLiked;
+    this._likes = [{_id: this._userId, isLiked: this._isLiked}]
     this._userId = data.owner;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteSubmit = handleDeleteSubmit;
     this._handleCardLike = handleCardLike;
     this._element = this._getTemplate();
-    console.log(`_isLiked:${this._isLiked}, _userId: ${this._userId}`);
   }
 
   _getTemplate() {
@@ -41,31 +40,23 @@ export default class Card {
   }
 
   isLiked(){
-    return this._isliked;
+    return this._isLiked;
   }
 
   updateLikes(userId, updatedLike) {
     const newLike = {_id: userId, isLiked: updatedLike}; 
-    console.log("Likes list: ", this._likes, "New Like: ", updatedLike);
-    console.log(`_like.some(like => like == newLike): ${this._likes.some(like => like == newLike)}`);
-    if(!this._likes.some(like => like == newLike)) {
-      console.log("Like Added");
+    if(!this._likes.some(like => like._id == this._userId)) {
       this._likes.push(newLike); //Adds like to list
     }
     else {
-      console.log("Like Removed")
       this._likes.pop(newLike); //Removes like from list
     }
-    console.log(`_like.some(like => like == newLike): ${this._likes.some(like => like == newLike)}`);
     this._isLiked = this._likes.some(like => like._id === this._userId);  // Update the isLiked boolean
-    console.log(this._isLiked);
     this._element.querySelector('.card__like-count').textContent = this._likes.length;
   }
 
   toggleLikeIcon() {
-    console.log("This like button is",this._isLiked);
     this._likeButton.classList.toggle('card__like-button-active', this._isLiked);
-    console.log("Like button toggled", this._isLiked);
   }
 
   getId() {
