@@ -4,7 +4,7 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._isLiked = data.isLiked;
-    this._likes = [{_id: this._userId, isLiked: this._isLiked}]
+    console.log(`_isLiked: ${this._isLiked}`);
     this._userId = data.owner;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
@@ -39,20 +39,14 @@ export default class Card {
     });
   }
 
-  isLiked(){
-    return this._isLiked;
+  isLiked(isLiked){
+    this._isLiked = isLiked;
   }
 
-  updateLikes(userId, updatedLike) {
-    const newLike = {_id: userId, isLiked: updatedLike}; 
-    if(!this._likes.some(like => like._id == this._userId)) {
-      this._likes.push(newLike); //Adds like to list
-    }
-    else {
-      this._likes.pop(newLike); //Removes like from list
-    }
-    this._isLiked = this._likes.some(like => like._id === this._userId);  // Update the isLiked boolean
-    this._element.querySelector('.card__like-count').textContent = this._likes.length;
+  updateLikes(updatedLike) { 
+    this._isLiked = updatedLike; //updates isLiked Boolean
+    
+    this._element.querySelector('.card__like-count').textContent = this._likes;
   }
 
   toggleLikeIcon() {
@@ -76,6 +70,7 @@ export default class Card {
     this._cardImageElement.setAttribute('src', this._link);
     this._cardImageElement.setAttribute('alt', this._name);
     this._cardElement.querySelector('.card__title').textContent = this._name;
+    this.toggleLikeIcon();
 
     this._setEventListeners();
 

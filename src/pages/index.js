@@ -177,8 +177,7 @@ function handleCardLike(card){
   likePromise
     .then(response =>  response.json())
     .then(updatedCardData => {
-      card.updateLikes(card._userId , updatedCardData.isLiked); 
-      card.toggleLikeIcon(); 
+      card.updateLikes(updatedCardData.isLiked);  
     })
     .catch(err => console.error(`Error updating like status: ${err}`));
 }
