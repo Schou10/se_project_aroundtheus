@@ -4,7 +4,6 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._isLiked = data.isLiked;
-    console.log(`_isLiked: ${this._isLiked}`);
     this._userId = data.owner;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
