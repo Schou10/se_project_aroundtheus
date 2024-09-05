@@ -39,18 +39,18 @@ export default class Card {
     });
   }
 
-  isLiked(isLiked){
-    this._isLiked = isLiked;
+  isLiked(){
+    return this._isLiked;
   }
 
   updateLikes(updatedLike) { 
     this._isLiked = updatedLike; //updates isLiked Boolean
-    
-    this._element.querySelector('.card__like-count').textContent = this._likes;
+    this.toggleLikeIcon();
   }
 
   toggleLikeIcon() {
     this._likeButton.classList.toggle('card__like-button-active', this._isLiked);
+    
   }
 
   getId() {
@@ -70,8 +70,7 @@ export default class Card {
     this._cardImageElement.setAttribute('src', this._link);
     this._cardImageElement.setAttribute('alt', this._name);
     this._cardElement.querySelector('.card__title').textContent = this._name;
-    this.toggleLikeIcon();
-
+    this.toggleLikeIcon(); //Shows the user if it already liked
     this._setEventListeners();
 
     return this._cardElement;
