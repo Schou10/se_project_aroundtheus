@@ -43,10 +43,10 @@ api.getUserInfo()
 
 api.getInitialCards()
   .then(cards => {
-    section.renderInitialItems(cards);
+    section.renderItems(cards);
   })
   .catch(err => {
-    console.error(`Error fetcting initial cards: ${err}`);
+    console.error(`Error fetcting cards: ${err}`);
   })
 
 
@@ -158,20 +158,24 @@ function handleAvatarSubmit(data){
 
 //delete
 function handleDeleteSubmit(card){
-  api.deleteCard(card._id)
-  .then(card => {
-    const confirmButton = document.querySelector('#delete-confirm-button');
-    deletePopup.open();
-    confirmButton.addEventListener('click', function onConfirmClick() {
+  const confirmButton = document.querySelector('#delete-confirm-button');
+  deletePopup.open();
+  confirmButton.addEventListener('click', function onConfirmClick() {
     card.removeCard();
-    api.deleteCard(card._id);
-    deletePopup.close();
-    confirmButton.removeEventListener('click', onConfirmClick)
-  })})
-  .catch(err => {
-    console.error(`Error deleting card ${err}`);
-  });
+    api.deleteCard(card._id)
+      .then(card => {
+          deletePopup.close();
+          confirmButton.removeEventListener('click', onConfirmClick)
+      })
+      .catch(err => {
+        console.error(`Error deleting card ${err}`);
+    });
+  })
 }
+  
+    
+    
+  
 
 //like
 function handleCardLike(card){
