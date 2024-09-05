@@ -8,6 +8,6 @@ export class PopupWithConfirmation extends Popup{
   }
   setEventListeners() {
     super.setEventListeners();
-    this._confimButton.addEventListener('click', this._handleConfirm)
+    this._handleConfirm;
   }
 }
