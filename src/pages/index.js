@@ -67,7 +67,7 @@ const avatar = document.querySelector("#avatar-overlay");
 //profile name & description / user info / use Profile img
 const userNameInput = document.querySelector("#name-input");
 const userJobInput = document.querySelector("#description-input");
-const userAvatarInput = document.querySelector("#avatar-url-input");
+
 
 
 //forms
@@ -140,6 +140,8 @@ function handleAddCardSubmit(data) {
     });
 }
 
+
+
 //avatar
 function handleAvatarSubmit(data){
   api.updateUserAvatar({
@@ -156,15 +158,19 @@ function handleAvatarSubmit(data){
 
 //delete
 function handleDeleteSubmit(card){
-  if(card){const confirmButton = document.querySelector('#delete-confirm-button');
-  deletePopup.open();
-  confirmButton.addEventListener('click', function onConfirmClick() {
+  api.deleteCard(card._id)
+  .then(card => {
+    const confirmButton = document.querySelector('#delete-confirm-button');
+    deletePopup.open();
+    confirmButton.addEventListener('click', function onConfirmClick() {
     card.removeCard();
     api.deleteCard(card._id);
     deletePopup.close();
     confirmButton.removeEventListener('click', onConfirmClick)
-  })}
-  
+  })})
+  .catch(err => {
+    console.error(`Error deleting card ${err}`);
+  });
 }
 
 //like
@@ -176,25 +182,23 @@ function handleCardLike(card){
     : api.addLike(card.getId()); 
 
   likePromise
-    .then(response =>  response.json())
     .then(updatedCardData => {
       card.updateLikes(updatedCardData.isLiked);  
     })
     .catch(err => console.error(`Error updating like status: ${err}`));
 }
 
-function openProfileModal(popup) {
+function openModal(popup) {
   const currentUser = user.getUserInfo();
   userNameInput.value = currentUser.name;
   userJobInput.value = currentUser.about;
-  userAvatarInput.value = currentUser.avatar;
   popup.open();
 }
 
 // Event Listeners
-avatar.addEventListener('click', () =>{openProfileModal(avatarPopup)})
+avatar.addEventListener('click', () =>{openModal(avatarPopup)})
 
-profileEditButton.addEventListener('click', () =>{openProfileModal(editPopup)});
+profileEditButton.addEventListener('click', () =>{openModal(editPopup)});
 
 addNewCardButton.addEventListener('click', () => {
   addCardPopup.open();

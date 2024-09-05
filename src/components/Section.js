@@ -18,10 +18,4 @@ export default class Section {
     this._container.innerHTML = ''; 
   }
 
-  renderInitialItems(items) {
-    this.clearItems(); 
-    items.forEach(item => {
-      this._renderer(item);
-    });
-  }
 }
