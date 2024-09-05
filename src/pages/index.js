@@ -6,6 +6,7 @@ import UserInfo  from "../components/UserInfo.js";
 import { validationSettings } from "../utils/constants.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import "../pages/index.css";
 
 // API Initialized
@@ -55,7 +56,7 @@ api.getInitialCards()
 const editPopup = new PopupWithForm('#profile-edit-modal', handleProfileSubmit);
 const addCardPopup = new PopupWithForm('#add-card-modal', handleAddCardSubmit);
 const imagePopup = new PopupWithImage('#image-modal', handleImageClick); 
-const deletePopup = new PopupWithForm('#delete-modal', handleDeleteSubmit);
+const deletePopup = new PopupWithConfirmation('#delete-modal', handleDeleteSubmit);
 const avatarPopup = new PopupWithForm('#avatar-modal', handleAvatarSubmit);
 
 //button
