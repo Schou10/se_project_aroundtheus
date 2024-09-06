@@ -129,7 +129,7 @@ function handleAddCardSubmit(data) {
     name: data.title,
     link: data.url
   };
-  addCardPopup.renderLoading(true, "Adding Card..");
+  addCardPopup.renderLoading(true);
   // Create the Card 
   api.addNewCard(cardData)
     .then((newCardData) => {
