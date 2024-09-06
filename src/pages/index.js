@@ -172,10 +172,10 @@ function handleAvatarSubmit(data){
 
 //delete
 function handleDeleteSubmit(card){
-  renderLoading(true, deletePopup);
   deletePopup.setSubmitFunction(() => {
+    renderLoading(true, deletePopup);
     api.deleteCard(card._id)
-      .then(card => {
+      .then(() => {
         card.removeCard();
       })
       .catch(err => {
@@ -185,10 +185,8 @@ function handleDeleteSubmit(card){
         renderLoading(false, deletePopup);
         deletePopup.close();
       })
-  
   });
-  deletePopup.open();
-  
+  deletePopup.open();  
 } 
     
   
@@ -218,20 +216,18 @@ function openModal(popup) {
 function renderLoading(isSaving, popup){
   if(isSaving){
     if(popup == deletePopup){
-      return popup.confirmButton.textContent = "Deleating Card";
+      return popup._confirmButton.textContent = "Deleating Card";
     }
     if(popup == addCardPopup){
       return popup.submitButton.textContent = "Creating Card";
     }
     if (popup == editPopup || avatarPopup){
       return popup.submitButton.textContent = "Saving";
-    }
-    
-        
+    }   
   }
   else{
     if(popup == deletePopup){
-      return popup.confirmButton.textContent = "Yes";
+      return popup._confirmButton.textContent = "Yes";
     }
     if(popup == addCardPopup){
       return popup.submitButton.textContent = "Create";
