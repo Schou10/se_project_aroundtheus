@@ -105,7 +105,7 @@ function handleImageClick(cardData) {
 //edit profile
 function handleProfileSubmit(data) {
   console.log(data);
-  renderSaving(true, editPopup);
+  renderLoading(true, editPopup);
   api.updateUserInfo({
     name: data.name,
     about: data.about
@@ -118,7 +118,7 @@ function handleProfileSubmit(data) {
     })
     .catch(err => console.error(`Error updating profile: ${err}`))
     .finally(() =>{
-      renderSaving(false, editPopup);
+      renderLoading(false, editPopup);
       editPopup.close();
     }
     )
@@ -130,7 +130,7 @@ function handleAddCardSubmit(data) {
     name: data.title,
     link: data.url
   };
-
+  renderLoading(true, addCardPopup);
   // Create the Card 
   api.addNewCard(cardData)
     .then((newCardData) => {
@@ -142,14 +142,18 @@ function handleAddCardSubmit(data) {
     })
     .catch(err => {
       console.error(`Error adding card: ${err}`);
-    });
+    })
+    .finally(() => {
+      renderLoading(false, addCardPopup)
+    }
+    )
 }
 
 
 
 //avatar
 function handleAvatarSubmit(data){
-  renderSaving(true, avatarPopup);
+  renderLoading(true, avatarPopup);
   api.updateUserAvatar({
     avatar: data.url
   })
@@ -161,7 +165,7 @@ function handleAvatarSubmit(data){
     })
     .catch(err => console.error(`Error updating avatar: ${err}`))
     .finally(() =>{
-      renderSaving(false, avatarPopup);
+      renderLoading(false, avatarPopup);
       avatarPopup.close();
     });
 }
@@ -170,16 +174,22 @@ function handleAvatarSubmit(data){
 function handleDeleteSubmit(card){
   const confirmButton = document.querySelector('#delete-confirm-button');
   deletePopup.open();
+  
   confirmButton.addEventListener('click', function onConfirmClick() {
+    renderLoading(true, deletePopup);
     card.removeCard();
     api.deleteCard(card._id)
       .then(card => {
-          deletePopup.close();
+          
           confirmButton.removeEventListener('click', onConfirmClick)
       })
       .catch(err => {
         console.error(`Error deleting card ${err}`);
-    });
+      })
+      .finally(()=>{
+        renderLoading(false, deletePopup);
+        deletePopup.close();
+      })
   })
 }
   
@@ -209,12 +219,30 @@ function openModal(popup) {
   popup.open();
 }
 
-function renderSaving(isSaving, popup){
+function renderLoading(isSaving, popup){
   if(isSaving){
-    popup.submitButton.textContent = "Saving";
+    if(popup == deletePopup){
+      return popup.confirmButton.textContent = "Deleating Card";
+    }
+    if(popup == addCardPopup){
+      return popup.submitButton.textContent = "Creating Card";
+    }
+    if (popup == editPopup || avatarPopup){
+      return popup.submitButton.textContent = "Saving";
+    }
+    
+        
   }
   else{
-    popup.submitButton.textContent = "Save";
+    if(popup == deletePopup){
+      return popup.confirmButton.textContent = "Yes";
+    }
+    if(popup == addCardPopup){
+      return popup.submitButton.textContent = "Create";
+    }
+    if(popup == editPopup || avatarPopup) {
+      return popup.submitButton.textContent = "Save";
+    }
 }}
 
 // Event Listeners
