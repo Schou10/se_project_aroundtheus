@@ -56,7 +56,7 @@ api.getInitialCards()
 const editPopup = new PopupWithForm('#profile-edit-modal', handleProfileSubmit);
 const addCardPopup = new PopupWithForm('#add-card-modal', handleAddCardSubmit);
 const imagePopup = new PopupWithImage('#image-modal', handleImageClick); 
-const deletePopup = new PopupWithConfirmation('#delete-modal', handleDeleteSubmit);
+const deletePopup = new PopupWithConfirmation('#delete-modal');
 const avatarPopup = new PopupWithForm('#avatar-modal', handleAvatarSubmit);
 
 //button
@@ -172,16 +172,11 @@ function handleAvatarSubmit(data){
 
 //delete
 function handleDeleteSubmit(card){
-  const confirmButton = document.querySelector('#delete-confirm-button');
-  deletePopup.open();
-  
-  confirmButton.addEventListener('click', function onConfirmClick() {
-    renderLoading(true, deletePopup);
-    card.removeCard();
+  renderLoading(true, deletePopup);
+  deletePopup.setSubmitFunction(() => {
     api.deleteCard(card._id)
       .then(card => {
-          
-          confirmButton.removeEventListener('click', onConfirmClick)
+        card.removeCard();
       })
       .catch(err => {
         console.error(`Error deleting card ${err}`);
@@ -190,10 +185,11 @@ function handleDeleteSubmit(card){
         renderLoading(false, deletePopup);
         deletePopup.close();
       })
-  })
-}
   
-    
+  });
+  deletePopup.open();
+  
+} 
     
   
 
