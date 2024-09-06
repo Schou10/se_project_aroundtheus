@@ -6,7 +6,8 @@ export class PopupWithForm extends Popup{
     this._popupForm = this._popupElement.querySelector('.modal__form')
     this._handleFormSubmit = handleFormSubmit;
     this.inputList = this._popupForm.querySelectorAll('.modal__input');
-    this.submitButton = this._popupForm.querySelector('.modal__button');
+    this._submitButton = this._popupForm.querySelector('.modal__button');
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   setEventListeners() {
@@ -32,4 +33,14 @@ export class PopupWithForm extends Popup{
       input.value = data[input.name];
     });
   }
-}
+  
+  renderLoading(isLoading, loadingText="Svaing...") {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+	// here we return back the initial text. So, you don’t need to bother yourself about it
+      this._submitButton.textContent = this._submitButtonText;
+    }
+  }
+
+  }

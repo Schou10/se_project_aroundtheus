@@ -104,7 +104,7 @@ function handleImageClick(cardData) {
 
 //edit profile
 function handleProfileSubmit(data) {
-  renderLoading(true, editPopup);
+  editPopup.renderLoading(true);
   api.updateUserInfo({
     name: data.name,
     about: data.about
@@ -117,7 +117,7 @@ function handleProfileSubmit(data) {
     })
     .catch(err => console.error(`Error updating profile: ${err}`))
     .finally(() =>{
-      renderLoading(false, editPopup);
+      editPopup.renderLoading(false);
       editPopup.close();
     }
     )
@@ -129,7 +129,7 @@ function handleAddCardSubmit(data) {
     name: data.title,
     link: data.url
   };
-  renderLoading(true, addCardPopup);
+  addCardPopup.renderLoading(true, "Adding Card..");
   // Create the Card 
   api.addNewCard(cardData)
     .then((newCardData) => {
@@ -143,7 +143,7 @@ function handleAddCardSubmit(data) {
       console.error(`Error adding card: ${err}`);
     })
     .finally(() => {
-      renderLoading(false, addCardPopup)
+      addCardPopup.renderLoading(false);
     }
     )
 }
@@ -152,7 +152,7 @@ function handleAddCardSubmit(data) {
 
 //avatar
 function handleAvatarSubmit(data){
-  renderLoading(true, avatarPopup);
+  avatarPopup.renderLoading(true);
   api.updateUserAvatar({
     avatar: data.url
   })
@@ -164,7 +164,7 @@ function handleAvatarSubmit(data){
     })
     .catch(err => console.error(`Error updating avatar: ${err}`))
     .finally(() =>{
-      renderLoading(false, avatarPopup);
+      avatarPopup.renderLoading(false);
       avatarPopup.close();
       avatarFormElement.reset();
     });
@@ -173,7 +173,7 @@ function handleAvatarSubmit(data){
 //delete
 function handleDeleteSubmit(card){
   deletePopup.setSubmitFunction(() => {
-    renderLoading(true, deletePopup);
+    deletePopup.renderLoading(true);
     api.deleteCard(card._id)
       .then(() => {
         card.removeCard();
@@ -182,7 +182,7 @@ function handleDeleteSubmit(card){
         console.error(`Error deleting card ${err}`);
       })
       .finally(()=>{
-        renderLoading(false, deletePopup);
+        deletePopup.renderLoading(false);
         deletePopup.close();
       })
   });
@@ -212,30 +212,6 @@ function openModal(popup) {
   userJobInput.value = currentUser.about;
   popup.open();
 }
-
-function renderLoading(isSaving, popup){
-  if(isSaving){
-    if(popup == deletePopup){
-      return popup._confirmButton.textContent = "Deleating Card";
-    }
-    if(popup == addCardPopup){
-      return popup.submitButton.textContent = "Creating Card";
-    }
-    if (popup == editPopup || avatarPopup){
-      return popup.submitButton.textContent = "Saving";
-    }   
-  }
-  else{
-    if(popup == deletePopup){
-      return popup._confirmButton.textContent = "Yes";
-    }
-    if(popup == addCardPopup){
-      return popup.submitButton.textContent = "Create";
-    }
-    if(popup == editPopup || avatarPopup) {
-      return popup.submitButton.textContent = "Save";
-    }
-}}
 
 // Event Listeners
 avatar.addEventListener('click', () =>{openModal(avatarPopup)})
