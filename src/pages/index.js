@@ -104,7 +104,6 @@ function handleImageClick(cardData) {
 
 //edit profile
 function handleProfileSubmit(data) {
-  console.log(data);
   renderLoading(true, editPopup);
   api.updateUserInfo({
     name: data.name,
@@ -167,6 +166,7 @@ function handleAvatarSubmit(data){
     .finally(() =>{
       renderLoading(false, avatarPopup);
       avatarPopup.close();
+      avatarFormElement.reset();
     });
 }
 
