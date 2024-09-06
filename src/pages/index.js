@@ -105,6 +105,7 @@ function handleImageClick(cardData) {
 //edit profile
 function handleProfileSubmit(data) {
   console.log(data);
+  renderSaving(true, editPopup);
   api.updateUserInfo({
     name: data.name,
     about: data.about
@@ -114,9 +115,13 @@ function handleProfileSubmit(data) {
         name: updatedUserData.name, 
         about: updatedUserData.about || updatedUserData.dascription || updatedUserData.bio
       });
-      editPopup.close();
     })
-    .catch(err => console.error(`Error updating profile: ${err}`));
+    .catch(err => console.error(`Error updating profile: ${err}`))
+    .finally(() =>{
+      renderSaving(false, editPopup);
+      editPopup.close();
+    }
+    )
    }
 
 // Add card
@@ -144,6 +149,7 @@ function handleAddCardSubmit(data) {
 
 //avatar
 function handleAvatarSubmit(data){
+  renderSaving(true, avatarPopup);
   api.updateUserAvatar({
     avatar: data.url
   })
@@ -151,9 +157,13 @@ function handleAvatarSubmit(data){
       user.setUserInfo({
         avatar: updateUserData.avatar
       });
-      avatarPopup.close();
+      
     })
-    .catch(err => console.error(`Error updating avatar: ${err}`));
+    .catch(err => console.error(`Error updating avatar: ${err}`))
+    .finally(() =>{
+      renderSaving(false, avatarPopup);
+      avatarPopup.close();
+    });
 }
 
 //delete
@@ -198,6 +208,14 @@ function openModal(popup) {
   userJobInput.value = currentUser.about;
   popup.open();
 }
+
+function renderSaving(isSaving, popup){
+  if(isSaving){
+    popup.submitButton.textContent = "Saving";
+  }
+  else{
+    popup.submitButton.textContent = "Save";
+}}
 
 // Event Listeners
 avatar.addEventListener('click', () =>{openModal(avatarPopup)})
