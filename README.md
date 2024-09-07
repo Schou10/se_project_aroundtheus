@@ -40,8 +40,6 @@ Good luck and have fun!
 
 This is a brief video that show cases my journey through out this project and helps describe my creative process.You can watch the video [here](https://drive.google.com/file/d/1vTNctlrJtwh2vFQuxUxdsN69Gq31SmKT/view?usp=sharing).
 
-This is an update to my progress on Project 9 [One-Page Full Website Project | HTML & CSS Responsive Website]()
-
 **GITHub**
 
 You can find all the source code for this project on my github. You can get to the GITHub by clicking the link [here](https://schou10.github.io/se_project_aroundtheus/).
