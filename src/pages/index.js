@@ -114,13 +114,12 @@ function handleProfileSubmit(data) {
         name: updatedUserData.name, 
         about: updatedUserData.about || updatedUserData.dascription || updatedUserData.bio
       });
+      editPopup.close();
     })
     .catch(err => console.error(`Error updating profile: ${err}`))
-    .finally(() =>{
+    .finally(()=>{
       editPopup.renderLoading(false);
-      editPopup.close();
-    }
-    )
+    })
    }
 
 // Add card
@@ -160,12 +159,11 @@ function handleAvatarSubmit(data){
       user.setUserInfo({
         avatar: updateUserData.avatar
       });
-      
+      avatarPopup.close();
     })
     .catch(err => console.error(`Error updating avatar: ${err}`))
     .finally(() =>{
       avatarPopup.renderLoading(false);
-      avatarPopup.close();
       avatarFormElement.reset();
     });
 }
@@ -177,13 +175,14 @@ function handleDeleteSubmit(card){
     api.deleteCard(card._id)
       .then(() => {
         card.removeCard();
+        deletePopup.close();
       })
       .catch(err => {
         console.error(`Error deleting card ${err}`);
       })
       .finally(()=>{
         deletePopup.renderLoading(false);
-        deletePopup.close();
+        
       })
   });
   deletePopup.open();  
