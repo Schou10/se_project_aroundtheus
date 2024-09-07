@@ -160,11 +160,12 @@ function handleAvatarSubmit(data){
         avatar: updateUserData.avatar
       });
       avatarPopup.close();
+      avatarFormElement.reset();
     })
     .catch(err => console.error(`Error updating avatar: ${err}`))
     .finally(() =>{
       avatarPopup.renderLoading(false);
-      avatarFormElement.reset();
+      
     });
 }
 
