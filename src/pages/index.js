@@ -206,17 +206,19 @@ function handleCardLike(card){
     .catch(err => console.error(`Error updating like status: ${err}`));
 }
 
-function openModal(popup) {
+function openProfileModal() {
   const currentUser = user.getUserInfo();
   userNameInput.value = currentUser.name;
   userJobInput.value = currentUser.about;
-  popup.open();
+  editPopup.open();
 }
 
-// Event Listeners
-avatar.addEventListener('click', () =>{openModal(avatarPopup)})
 
-profileEditButton.addEventListener('click', () =>{openModal(editPopup)});
+
+// Event Listeners
+avatar.addEventListener('click', () =>{avatarPopup.open()})
+
+profileEditButton.addEventListener('click', () =>{openProfileModal()});
 
 addNewCardButton.addEventListener('click', () => {
   addCardPopup.open();
